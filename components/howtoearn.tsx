@@ -32,7 +32,7 @@ export default function Howtoearn() {
             <Box className="flex justify-between items-center gap-[16px] mt-[16px] flex-col md:flex-row">
                 {
                     datum.map((item, index) => (
-                        <Box className="flex-1 w-full md:w-auto cursor-pointer">
+                        <Box className="flex-1 w-full md:w-auto cursor-pointer" key={index}>
                             <Box key={index} className="bg-[#111315] rounded-[12px] overflow-hidden text-[14px]">
                                 <Box className="bg-[#16181A] px-[24px] py-[13px] text-[#ABAFB4] flex justify-between items-center">
                                     <p>Action</p>

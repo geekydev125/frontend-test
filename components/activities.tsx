@@ -69,7 +69,7 @@ export default function Activities() {
 
     return (
         <Box className="container mt-[30px]">
-            <Box className="overflow-auto">
+            <Box className="overflow-auto border">
                 <Table.Root className="min-w-[600px] overflow-hidden rounded-[12px]">
                     <Table.Header className="bg-[#16181A]">
                         <Table.Row className="text-[12px] leading-[18px]">

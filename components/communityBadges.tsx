@@ -68,10 +68,7 @@ export default function CommunityBadges() {
                         slidesPerView={2}
                         spaceBetween={8}
                         modules={[Grid]}
-                        grid={{
-                            rows: 2,
-                            fill: 'row',
-                        }}
+                        
                         breakpoints={{
                             1200: {
                                 slidesPerView: 6.5
@@ -85,6 +82,12 @@ export default function CommunityBadges() {
                                     fill: 'row',
                                 }
                             },
+                            0: {
+                                grid: {
+                                    rows: 2,
+                                    fill: 'row',
+                                }
+                            }
                         }}
                         className="multi-column-swiper"
                     >
