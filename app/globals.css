@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  --theme-color: #27D17F;
+  --max-width: 1440px;
+  --glo-padding-lg: 112px;
+  --glo-padding-md: 50px;
+  --glo-padding-sm: 16px;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer !important;
+}
+
+/* -------- Scroll CSS Start -------- */
+
+::-webkit-scrollbar {
+  width: 5px;
+  scrollbar-width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #27D17F;
+}
+/* -------- Scroll CSS End -------- */
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+tr, th, td {
+  color: #ABAFB4;
+}
+
+.Toastify__toast {
+  background-color: #080A0B;
+  color: #ABAFB4;
+  border: 1px solid var(--theme-color);
+}
+
+.Toastify__toast button {
+  color: white;
+}
+
+@layer utilities {
+  .container {
+    max-width: var(--max-width);
+    padding-left: var(--glo-padding-lg);
+    padding-right: var(--glo-padding-lg);
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+  }
+
+  @media screen and (max-width: 1280px) {
+    .container {
+      padding-left: var(--glo-padding-md);
+      padding-right: var(--glo-padding-md);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      padding-left: var(--glo-padding-sm);
+      padding-right: var(--glo-padding-sm);
+    }
+  }
+
+  .logo {
+    padding: 4px 41px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(39, 209, 127, 0.1);
+  }
+  .link {
+    padding: 9.5px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+}
