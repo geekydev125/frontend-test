@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, use } from "react";
 import { Box } from "@radix-ui/themes";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCreative } from "swiper/modules";
@@ -14,6 +14,7 @@ import "swiper/css/effect-creative";
 export default function Badges() {
 
     const [activeIndex, setActiveIndex] = useState(0);
+    const [rendered, setRendered] = useState(false);
 
     const datum = [
         {
@@ -67,95 +68,105 @@ export default function Badges() {
         },
     ]
 
+    useEffect(() => {
+        setRendered(true);
+    }, [])
+
     return (
-        <Box className="container">
-            <p className="text-[12px] text-[#ABAFB4] mt-[24px]">Badges</p>
-            <Box className="bg-[#0C0E10] px-[24px] py-[16px] rounded-[24px] mt-[16px]">
-                <Box className="flex items-center gap-[16px] md:gao-[30px] lg:gap-[52px]">
-                    <div className="swiper-prev p-[12px] bg-[#16181A] rounded-full h-[244px] flex items-center cursor-pointer">
-                        <Image 
-                            src={"/icons/prev.png"}
-                            alt="prev"
-                            width={23}
-                            height={23}
-                        />
-                    </div>
-                    {/* ----------------------------------------------- */}
-                    <div className="slider-container flex-1 overflow-hidden">
-                        <Swiper
-                            onSwiper={s => {
-                                setActiveIndex(s.activeIndex)
-                            }}
-                            onSlideChange={(s) => {
-                                setActiveIndex(s.activeIndex)
-                            }}
-                            centeredSlides={true}
-                            className="flex-row"
-                            initialSlide={3}
-                            breakpoints={{
-                                576: {
-                                    slidesPerView: 1,
-                                    centeredSlides: true,
-                                    effect: "none",
-                                },
-                                768: {
-                                    slidesPerView: 3,
-                                    centeredSlides: true,
-                                },
-                                1024: {
-                                    slidesPerView: 6,
-                                    centeredSlides: true,
-                                },
-                            }}
-                            effect="creative"
-                            modules={[EffectCreative, Navigation]}
-                            navigation={{
-                                nextEl: ".swiper-next",
-                                prevEl: ".swiper-prev",
-                            }}
-                            creativeEffect={{
-                                prev: {
-                                    opacity: 0.5,
-                                    translate: ["-210%", 0, -200],
-                                    scale: 0.75,
-                                },
-                                next: {
-                                    opacity: 0.5,
-                                    translate: ["210%", 0, -200],
-                                    scale: 0.75,
-                                },
-                                limitProgress: 4,
-                                progressMultiplier: 0.5,
-                            }}
-                        >
-                            {
-                                datum.map((item, index) => (
-                                    <SwiperSlide key={index} className="">
-                                        {
-                                            activeIndex === index ? (
-                                                <ActiveTab {...item} />
-                                            ) : (
-                                                <InactiveTab image={item.image} />
-                                            )
-                                        }
-                                    </SwiperSlide>
-                                ))
-                            }
-                        </Swiper>
-                    </div>
-                    {/* ----------------------------------------------- */}
-                    <div className="swiper-next p-[12px] bg-[#16181A] rounded-full h-[244px] flex items-center cursor-pointer">
-                        <Image 
-                            src={"/icons/next.png"}
-                            alt="next"
-                            width={23}
-                            height={23}
-                        />
-                    </div>
+        rendered ? (
+            <Box className="container">
+                <p className="text-[12px] text-[#ABAFB4] mt-[24px]">Badges</p>
+                <Box className="bg-[#0C0E10] px-[24px] py-[16px] rounded-[24px] mt-[16px]">
+                    <Box className="flex items-center gap-[16px] md:gao-[30px] lg:gap-[52px]">
+                        <div className="swiper-prev p-[12px] bg-[#16181A] rounded-full h-[244px] flex items-center cursor-pointer">
+                            <Image 
+                                src={"/icons/prev.png"}
+                                alt="prev"
+                                width={23}
+                                height={23}
+                            />
+                        </div>
+                        {/* ----------------------------------------------- */}
+                        <div className="slider-container flex-1 overflow-hidden">
+                            <Swiper
+                                onSwiper={s => {
+                                    setActiveIndex(s.activeIndex)
+                                }}
+                                onSlideChange={(s) => {
+                                    setActiveIndex(s.activeIndex)
+                                }}
+                                centeredSlides={true}
+                                className="flex-row"
+                                initialSlide={3}
+                                breakpoints={{
+                                    576: {
+                                        slidesPerView: 1,
+                                        centeredSlides: true,
+                                        effect: "none",
+                                    },
+                                    768: {
+                                        slidesPerView: 3,
+                                        centeredSlides: true,
+                                    },
+                                    1024: {
+                                        slidesPerView: 6,
+                                        centeredSlides: true,
+                                    },
+                                }}
+                                effect="creative"
+                                modules={[EffectCreative, Navigation]}
+                                navigation={{
+                                    nextEl: ".swiper-next",
+                                    prevEl: ".swiper-prev",
+                                }}
+                                creativeEffect={{
+                                    prev: {
+                                        opacity: 0.5,
+                                        translate: ["-210%", 0, -200],
+                                        scale: 0.75,
+                                    },
+                                    next: {
+                                        opacity: 0.5,
+                                        translate: ["210%", 0, -200],
+                                        scale: 0.75,
+                                    },
+                                    limitProgress: 4,
+                                    progressMultiplier: 0.5,
+                                }}
+                            >
+                                {
+                                    datum.map((item, index) => (
+                                        <SwiperSlide key={index} className="">
+                                            {
+                                                activeIndex === index ? (
+                                                    <ActiveTab {...item} />
+                                                ) : (
+                                                    <InactiveTab image={item.image} />
+                                                )
+                                            }
+                                        </SwiperSlide>
+                                    ))
+                                }
+                            </Swiper>
+                        </div>
+                        {/* ----------------------------------------------- */}
+                        <div className="swiper-next p-[12px] bg-[#16181A] rounded-full h-[244px] flex items-center cursor-pointer">
+                            <Image 
+                                src={"/icons/next.png"}
+                                alt="next"
+                                width={23}
+                                height={23}
+                            />
+                        </div>
+                    </Box>
+                <Howtoearn />
                 </Box>
-            <Howtoearn />
             </Box>
-        </Box>
+        ) : (
+            <Box className="flex justify-center py-[24px]">
+                <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </Box>
+        )
     )
 }
 
